@@ -1,38 +1,39 @@
-require "test_helper"
+require 'test_helper'
 
 class ProductsControllerTest < ActionDispatch::IntegrationTest
-  test "should get index" do
-    get products_index_url
+  # POST /products
+  def test_create_product
+    post '/api/products', params: { name: 'Test Product', price: '10.99', short_description: 'Test Description' }
     assert_response :success
+    assert_equal 'success', JSON.parse(response.body)['status']
   end
 
-  test "should get show" do
-    get products_show_url
+  # GET /products/:id
+  def test_read_product
+    product = Product.create(name: 'Test Product', price: '10.99', short_description: 'Test Description')
+    get "/api/products/#{product.id}"
     assert_response :success
+    assert_equal product.name, JSON.parse(response.body)['name']
+    assert_equal product.price.to_s, JSON.parse(response.body)['price']
   end
 
-  test "should get new" do
-    get products_new_url
+
+  # PUT /products/:id
+  def test_update_product
+    product = Product.create(name: 'Test Product', price: '10.99', short_description: 'Test Description')
+    put "/api/products/#{product.id}", params: { name: 'Updated Product', price: '12.99', short_description:'abc'}
     assert_response :success
+    assert_equal 'success', JSON.parse(response.body)['status']
+    assert_equal 'Updated Product', product.reload.name
+    assert_equal '12.99', product.reload.price.to_s
   end
 
-  test "should get create" do
-    get products_create_url
+  # DELETE /products/:id
+  def test_delete_product
+    product = Product.create(name: 'Test Product', price: '10.99', short_description: 'Test Description')
+    delete "/api/products/#{product.id}"
     assert_response :success
+    assert_equal 'success', JSON.parse(response.body)['status']
   end
 
-  test "should get edit" do
-    get products_edit_url
-    assert_response :success
-  end
-
-  test "should get update" do
-    get products_update_url
-    assert_response :success
-  end
-
-  test "should get destroy" do
-    get products_destroy_url
-    assert_response :success
-  end
 end

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="ProductsControllerTest" filepath="test/controllers/products_controller_test.rb" skipped="0" failures="0" errors="0" tests="4" assertions="11" time="0.10536723599943798">
+    <testcase name="test_read_product" lineno="12" classname="ProductsControllerTest" assertions="3" time="0.092934628999501" file="test/controllers/products_controller_test.rb">
+    </testcase>
+    <testcase name="test_update_product" lineno="22" classname="ProductsControllerTest" assertions="4" time="0.005919814000662882" file="test/controllers/products_controller_test.rb">
+    </testcase>
+    <testcase name="test_create_product" lineno="5" classname="ProductsControllerTest" assertions="2" time="0.003173621000314597" file="test/controllers/products_controller_test.rb">
+    </testcase>
+    <testcase name="test_delete_product" lineno="32" classname="ProductsControllerTest" assertions="2" time="0.0033391719989595003" file="test/controllers/products_controller_test.rb">
+    </testcase>
+  </testsuite>
+</testsuites>
