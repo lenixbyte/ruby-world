@@ -70,7 +70,6 @@ module Products
         requires :id, type: Integer, desc: "Product id"   
         requires :name, type: String, desc: "Product name"   
         requires :price, type: BigDecimal, desc: "Product price"   
-        optional :old_price, type: BigDecimal, desc: "Product old price"   
         requires :short_description, type: String, desc: "Product old price"   
         optional :full_description, type: String, desc: "Product old price"   
       end   
@@ -81,15 +80,14 @@ module Products
           if product.update({   
                                 name: params[:name],   
                                 price: params[:price],   
-                                old_price: params[:old_price],   
                                 short_description: params[:short_description],   
                                   
                             })   
             { status: :success }   
-              :notes => <<-NOTE   
-              Create Product
-              __________________
-              NOTE
+            #   :notes => <<-NOTE   
+            #   Create Product
+            #   __________________
+            #   NOTE
           else   
             error!({ status: :error, message: product.errors.full_messages.first }) if product.errors.any?   
           end   
@@ -111,7 +109,6 @@ module Products
       params do   
         requires :name, type: String, desc: "Product name"   
         requires :price, type: BigDecimal, desc: "Product price"   
-        optional :old_price, type: BigDecimal, desc: "Product old price"   
         requires :short_description, type: String, desc: "Product old price"   
         
       end   
@@ -121,7 +118,6 @@ module Products
           product =  Product.create({   
                                         name: params[:name],   
                                         price: params[:price],   
-                                        old_price: params[:old_price],   
                                         short_description: params[:short_description],   
                                           
                                     })   

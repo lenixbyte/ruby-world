@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   post 'products/create'
   get 'products/edit'
   post 'products/update'
-  delete 'products/destroy'
+  delete 'products/destroy', as: 'de1ete_product'
   mount Products::ProductsAPI => '/api/products'  
 
 
